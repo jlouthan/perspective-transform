@@ -1,13 +1,13 @@
 
-// If the user is not including math.js already, add shim so this library works. Removes dependency on math.js
+// If the user is not including numeric.js already, add shim so this library works. Removes dependency on numeric.js
 
 (function(window) {
-	if(window.math) {
+	if(window.numeric) {
 		return
 	}
 
 	else{
-		console.log('no math.js included!!');
+		console.log('no numeric.js included!!');
 	}
 
 }(window));
@@ -25,13 +25,6 @@
 	}
 }(this, function() {
 	'use strict';
-
-	function getArrayFromMatSize8(mat){
-		var array = [math.subset(mat, math.index(0)), math.subset(mat, math.index(1)), math.subset(mat, math.index(2)),
-		math.subset(mat, math.index(3)), math.subset(mat, math.index(4)), math.subset(mat, math.index(5)),
-		math.subset(mat, math.index(6)), math.subset(mat, math.index(7))];
-		return array;
-	}
 
 	function getNormalizationCoefficients(srcPts, dstPts, isInverse){
 		if(isInverse){
@@ -52,20 +45,15 @@
 		var matB = dstPts;
 	
 		try{
-	    	// var matC = math.inv(math.multiply(math.transpose(matA), matA));
 	    	var matC = numeric.inv(numeric.dot(numeric.transpose(matA), matA));
 		}catch(e){
 	    	console.log(e);
 	    	return [1,0,0,0,1,0,0,0];
 		}
-		// var matD = math.multiply(matC, math.transpose(matA));
-		// var matX = math.multiply(matD, matB);
 
 		var matD = numeric.dot(matC, numeric.transpose(matA));
 		var matX = numeric.dot(matD, matB);
 
-		// return getArrayFromMatSize8(matX);
-		console.log(matX);
 		return matX;
 	}
 
