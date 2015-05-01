@@ -92,7 +92,7 @@
 			return coordinates;
 		},
 
-		transformInverse: function() {
+		transformInverse: function(x,y) {
 			var coordinates = [];
 			coordinates[0] = (this.coeffsInv[0]*x + this.coeffsInv[1]*y + this.coeffsInv[2]) / (this.coeffsInv[6]*x + this.coeffsInv[7]*y + 1);
 			coordinates[1] = (this.coeffsInv[3]*x + this.coeffsInv[4]*y + this.coeffsInv[5]) / (this.coeffsInv[6]*x + this.coeffsInv[7]*y + 1);
