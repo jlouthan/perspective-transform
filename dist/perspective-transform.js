@@ -1,4 +1,17 @@
 
+// If the user is not including math.js already, add shim so this library works. Removes dependency on math.js
+
+(function(window) {
+	if(window.math) {
+		return
+	}
+
+	else{
+		console.log('no math.js included!!');
+	}
+
+}(window));
+
 
 (function(global, factory) {
 	if(typeof exports === 'object' && typeof module !== undefined){
