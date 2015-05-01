@@ -48,19 +48,25 @@
 		var r7 = [srcPts[6], srcPts[7], 1, 0, 0, 0, -1*dstPts[6]*srcPts[6], -1*dstPts[6]*srcPts[7]];
 		var r8 = [0, 0, 0, srcPts[6], srcPts[7], 1, -1*dstPts[7]*srcPts[6], -1*dstPts[7]*srcPts[7]];
 
-		var matA = math.matrix([r1, r2, r3, r4, r5, r6, r7, r8]);
-		var matB = math.matrix(dstPts);
+		var matA = [r1, r2, r3, r4, r5, r6, r7, r8];
+		var matB = dstPts;
 	
 		try{
-	    	var matC = math.inv(math.multiply(math.transpose(matA), matA));
+	    	// var matC = math.inv(math.multiply(math.transpose(matA), matA));
+	    	var matC = numeric.inv(numeric.dot(numeric.transpose(matA), matA));
 		}catch(e){
 	    	console.log(e);
 	    	return [1,0,0,0,1,0,0,0];
 		}
-		var matD = math.multiply(matC, math.transpose(matA));
-		var matX = math.multiply(matD, matB);
+		// var matD = math.multiply(matC, math.transpose(matA));
+		// var matX = math.multiply(matD, matB);
 
-		return getArrayFromMatSize8(matX);
+		var matD = numeric.dot(matC, numeric.transpose(matA));
+		var matX = numeric.dot(matD, matB);
+
+		// return getArrayFromMatSize8(matX);
+		console.log(matX);
+		return matX;
 	}
 
 	function PerspT(srcPts, dstPts){
