@@ -23,7 +23,7 @@
         		return [x.length];
     		}
     		return [];
-		}
+		};
 
 		numeric._foreach2 = (function _foreach2(x,s,k,f) {
     		if(k === s.length-1) { return f(x); }
@@ -40,15 +40,14 @@
 				ret[i] = (x[i]);
 			}
 			return ret;
-		}
+		};
 
 		numeric.clone = function (x) {
-			if(typeof x !== "object") return (x)
-			var i;
+			if(typeof x !== "object") return (x);
 			var V = numeric.cloneV;
 			var s = numeric.dim(x);
 			return numeric._foreach2(x,s,0,V);
-		}
+		};
 
 		numeric.diag = function diag(d) {
     		var i,i1,j,n = d.length, A = Array(n), Ai;
@@ -69,7 +68,7 @@
         		A[i] = Ai;
     		}
     		return A;
-		}
+		};
 
 		numeric.rep = function rep(s,v,k) {
     		if(typeof k === "undefined") { k=0; }
@@ -81,13 +80,13 @@
     		}
     		for(i=n-1;i>=0;i--) { ret[i] = numeric.rep(s,v,k+1); }
     		return ret;
-		}
+		};
 
-		numeric.identity = function(n) { return numeric.diag(numeric.rep([n],1)); }
+		numeric.identity = function(n) { return numeric.diag(numeric.rep([n],1)); };
 
-		numeric.inv = function inv(x) {
-    		var s = numeric.dim(x), abs = Math.abs, m = s[0], n = s[1];
-    		var A = numeric.clone(x), Ai, Aj;
+		numeric.inv = function inv(a) {
+    		var s = numeric.dim(a), abs = Math.abs, m = s[0], n = s[1];
+    		var A = numeric.clone(a), Ai, Aj;
     		var I = numeric.identity(m), Ii, Ij;
     		var i,j,k,x;
     		for(j=0;j<n;++j) {
@@ -111,10 +110,10 @@
         		}
     		}
     		return I;
-		}
+		};
 
 		numeric.dotMMsmall = function dotMMsmall(x,y) {
-    		var i,j,k,p,q,r,ret,foo,bar,woo,i0,k0,p0,r0;
+    		var i,j,k,p,q,r,ret,foo,bar,woo,i0;
     		p = x.length; q = y.length; r = y[0].length;
     		ret = Array(p);
     		for(i=p-1;i>=0;i--) {
@@ -132,14 +131,14 @@
         		ret[i] = foo;
     		}
     		return ret;
-		}
+		};
 
 		numeric.dotMV = function dotMV(x,y) {
-    		var p = x.length, q = y.length,i;
+    		var p = x.length, i;
     		var ret = Array(p), dotVV = numeric.dotVV;
     		for(i=p-1;i>=0;i--) { ret[i] = dotVV(x[i],y); }
     		return ret;
-		}
+		};
 
 		numeric.dotVV = function dotVV(x,y) {
     		var i,n=x.length,i1,ret = x[n-1]*y[n-1];
@@ -149,7 +148,7 @@
     		}
     		if(i===0) { ret += x[0]*y[0]; }
     		return ret;
-		}
+		};
 
 		numeric.transpose = function transpose(x) {
     		var i,j,m = x.length,n = x[0].length, ret=Array(n),A0,A1,Bj;
@@ -176,7 +175,7 @@
         		if(j===0) { ret[0][0] = A0[0]; }
     		}
     		return ret;
-		}
+		};
 
 		window.numeric = numeric;
 	}
@@ -218,9 +217,10 @@
 
 		var matA = [r1, r2, r3, r4, r5, r6, r7, r8];
 		var matB = dstPts;
+        var matC;
 	
 		try{
-	    	var matC = numeric.inv(numeric.dotMMsmall(numeric.transpose(matA), matA));
+	    	matC = numeric.inv(numeric.dotMMsmall(numeric.transpose(matA), matA));
 		}catch(e){
 	    	console.log(e);
 	    	return [1,0,0,0,1,0,0,0];
