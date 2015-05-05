@@ -18,25 +18,22 @@ function setMatrixForCurrentRectangles(){
 	}
 	perspectiveTran = PerspT(rect2, coordinates);
 	for(var i = 0; i < perspectiveTran.coeffs.length; i++){
-		$('#transMat' + i).html(round(perspectiveTran.coeffs[i]));
-		$('#transMatInv' + i).html(round(perspectiveTran.coeffsInv[i]));
+		$('#transMat' + i).html(perspectiveTran.coeffs[i]);
+		$('#transMatInv' + i).html(perspectiveTran.coeffsInv[i]);
 	}
 }
 
-function round(num){
-	return Math.round(num*10000000000)/10000000000;
-}
 
 function applyTransform(){
 	var x = $('#pointX').val();
 	var y = $('#pointY').val();
 	var res = perspectiveTran.transform(x,y);
-	$('#transResult').html('(' + round(res[0]) + ', ' + round(res[1]) + ')');
+	$('#transResult').html('(' + res[0] + ', ' + res[1] + ')');
 }
 
 function applyTransformInv(){
 	var x = $('#pointXInv').val();
 	var y = $('#pointYInv').val();
 	var res = perspectiveTran.transformInverse(x,y);
-	$('#transResultInv').html('(' + round(res[0]) + ', ' + round(res[1]) + ')');
+	$('#transResultInv').html('(' + res[0] + ', ' + res[1] + ')');
 }
