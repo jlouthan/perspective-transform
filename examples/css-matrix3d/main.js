@@ -1,6 +1,6 @@
 function transform2d(elt, x1, y1, x2, y2, x3, y3, x4, y4) {
   var w = elt.offsetWidth, h = elt.offsetHeight;
-  var transform = perspT([0, 0, w, 0, 0, h, w, h], [x1, y1, x2, y2, x3, y3, x4, y4]);
+  var transform = PerspT([0, 0, w, 0, 0, h, w, h], [x1, y1, x2, y2, x3, y3, x4, y4]);
   var t = transform.coeffs;
   t = [t[0], t[3], 0, t[6],
        t[1], t[4], 0, t[7],

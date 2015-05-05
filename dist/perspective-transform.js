@@ -191,7 +191,7 @@
 		define(factory);
 	}
 	else{
-		global.perspT = factory();
+		global.PerspT = factory();
 	}
 }(this, function() {
 	'use strict';
