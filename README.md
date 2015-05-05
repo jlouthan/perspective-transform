@@ -33,10 +33,10 @@ A small JavaScript library for creating and applying perspective transforms. A p
 
 * [`transform`](#transform)
 * [`transformInverse`](#transformInverse)
-* [`coeffs`](#coeffs)
-* [`coeffsInv`](#coeffsInv)
 * [`srcPts`](#srcPts)
 * [`dstPts`](#dstPts)
+* [`coeffs`](#coeffs)
+* [`coeffsInv`](#coeffsInv)
 
 Note: Commented variable values in the following examples assume `srcPts` and `dstPts` as used in the Basic Usage example above. 
 
