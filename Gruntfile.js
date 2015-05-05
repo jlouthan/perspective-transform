@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 		uglify: {
 			dist: {
 				files: {
-					'dist/perspective-transform.min.js': 'src/perspective-transform.js'
+					'dist/perspective-transform.min.js': 'dist/perspective-transform.js'
 				}
 			},
 			options: {
@@ -28,4 +28,4 @@ module.exports = function(grunt) {
 
 	require('load-grunt-tasks')(grunt);
 	grunt.registerTask('default', ['jshint', 'uglify']);
-}
+};
