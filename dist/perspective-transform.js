@@ -197,6 +197,10 @@
 }(this, function() {
 	'use strict';
 
+    function round(num){
+        return Math.round(num*10000000000)/10000000000;
+    }
+
 	function getNormalizationCoefficients(srcPts, dstPts, isInverse){
 		if(isInverse){
 			var tmp = dstPts;
@@ -224,6 +228,10 @@
 
 		var matD = numeric.dotMMsmall(matC, numeric.transpose(matA));
 		var matX = numeric.dotMV(matD, matB);
+        for(var i = 0; i < matX.length; i++) {
+            matX[i] = round(matX[i]);
+        }
+        matX[8] = 1;
 
 		return matX;
 	}
