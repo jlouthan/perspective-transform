@@ -2,10 +2,10 @@
   "name": "perspective-transform",
   "version": "1.1.0",
   "description": "Access perspective transform functions and matrices given two sets of four points",
-  "main": "./dist",
+  "main": "./dist/perspective-transform",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jlouthan/perspective-transform-js.git"
+    "url": "https://github.com/jlouthan/perspective-transform.git"
   },
   "author": "Jenny Louthan <jenny@uncorkedstudios.com> (https://github.com/jlouthan)",
   "devDependencies": {
