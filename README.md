@@ -9,11 +9,32 @@ A small JavaScript library for creating and applying perspective transforms. A p
 
 ## Install
 
-    $ bower install perspective-transform --save
+With npm:
+```
+$ npm install perspective-transform --save
+```
+
+With bower:
+```
+$ bower install perspective-transform --save
+```   
 
 ## Basic Usage
 
-###Browser
+### Node
+
+```js
+var PerspT = require('perspective-transform');
+
+var srcCorners = [158, 64, 494, 69, 495, 404, 158, 404];
+var dstCorners = [100, 500, 152, 564, 148, 604, 100, 560];
+var perspT = PerspT(srcCorners, dstCorners);
+var srcPt = [250, 120];
+var dstPt = perspT.transform(srcPt[0], srcPt[1]);
+// [117.27521125839255, 530.9202410878403]
+```
+
+### Browser
 
 ```html
 <script type="text/javascript" src="async.js"></script>
@@ -29,7 +50,7 @@ A small JavaScript library for creating and applying perspective transforms. A p
 </script>
 ```
 
-##API Documentation
+## API Documentation
 
 * [`transform`](#transform)
 * [`transformInverse`](#transformInverse)
