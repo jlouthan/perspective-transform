@@ -1,8 +1,8 @@
 
 // If the user is not including numeric.js already, add shim so this library works. Removes dependency on numeric.js
 
-(function(window) {
-	if(window.numeric) {
+(function(root) {
+	if(root.numeric) {
 		return;
 	}
 
@@ -177,10 +177,11 @@
     		return ret;
 		};
 
-		window.numeric = numeric;
+        this.numeric = numeric;
+		root.numeric = numeric;
 	}
 
-}(window));
+}(this));
 
 
 (function(global, factory) {
@@ -237,7 +238,7 @@
 	}
 
 	function PerspT(srcPts, dstPts){
-		if(window === this || this === undefined) {
+		if( (typeof window !== 'undefined' && window === this) || this === undefined) {
 			return new PerspT(srcPts, dstPts);
 		}
 
