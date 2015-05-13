@@ -10,8 +10,56 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <style type="text/css">
+        body {
+            font-family: sans-serif;
+        }
         input {
-            width: 100px;
+            width: 50px;
+            height: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        div.container:after {
+            clear: both;
+            content: "";
+            display: table;
+        }
+        div.container {
+            width: 1000px;
+            margin: auto;
+        }
+        div.input, div.output {
+            float: left;
+            width: 450px;
+            height: 400px;
+            padding: 0 25px;
+        }
+        div.input p {
+            text-align: center;
+            font-size: 20px;
+        }
+        div.button {
+            width: 200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #666666;
+            cursor: pointer;
+        }
+        h3 {
+            font-weight: 500;
+        }
+        div.result {
+            margin: 30px 0;
+        }
+        div.result h3 {
+            text-align: center;
+            margin: 30px 0;
+        }
+        div.result span {
+            display: inline-block;
+            width: 120px;
         }
     </style>
   </head>
@@ -19,62 +67,71 @@
     <!--[if lt IE 9]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div>
-        <!-- <input type="text" id="rect1">
-        <input type="text" id="rect2"> -->
-        <h3>Quadrilateral #1 Corner (x,y) Coordinates:</h3>
+    <div class="container">
+    <div class="input">
+        <h3>Source Quadrilateral Corner (x,y) Coordinates (in any order):</h3>
         <p>
             ( <input type="text" id="rect0x0" size="1"> , <input type="text" id="rect0y0" size="1"> )
             ( <input type="text" id="rect0x1" size="1"> , <input type="text" id="rect0y1" size="1"> )
+        </p>
+        <p>
             ( <input type="text" id="rect0x2" size="1"> , <input type="text" id="rect0y2" size="1"> )
             ( <input type="text" id="rect0x3" size="1"> , <input type="text" id="rect0y3" size="1"> )
         </p>
-        <h3>Quadrilateral #2 Corner (x,y) Coordinates:</h3>
+        <h3>Destination Quadrilateral Corner (x,y) Coordinates (same order used for source):</h3>
         <p>
             ( <input type="text" id="rect1x0" size="1"> , <input type="text" id="rect1y0" size="1"> )
             ( <input type="text" id="rect1x1" size="1"> , <input type="text" id="rect1y1" size="1"> )
+        </p>
+        <p>
             ( <input type="text" id="rect1x2" size="1"> , <input type="text" id="rect1y2" size="1"> )
             ( <input type="text" id="rect1x3" size="1"> , <input type="text" id="rect1y3" size="1"> )
         </p>
-        <button onclick="setMatrixForCurrentRectangles()">Calculate Transformation</button>
+        <div class="button" onclick="setMatrixForCurrentRectangles()">Calculate Transformation</div>
     </div>
 
-    <div>
+    <div class="output">
         <h3>Transformation Matrix:</h3>
-        <h3><span>a</span> <span>b</span> <span>c</span></h3>
-        <h3><span>d</span> <span>e</span> <span>f</span></h3>
-        <h3><span>g</span> <span>h</span> <span>1</span></h3>
-
-        <h3><span id="transMat0"></span> <span id="transMat1"></span> <span id="transMat2"></span></h3>
-        <h3><span id="transMat3"></span> <span id="transMat4"></span> <span id="transMat5"></span></h3>
-        <h3><span id="transMat6"></span> <span id="transMat7"></span> <span id="transMat8">1</span></h3>
+        <div class="result">
+            <h3><span id="transMat0">a</span> <span id="transMat1">b</span> <span id="transMat2">c</span></h3>
+            <h3><span id="transMat3">d</span> <span id="transMat4">e</span> <span id="transMat5">f</span></h3>
+            <h3><span id="transMat6">g</span> <span id="transMat7">h</span> <span id="transMat8">1</span></h3>
+        </div>
 
         <h3>Inverse Transformation Matrix:</h3>
-        <h3><span>a</span> <span>b</span> <span>c</span></h3>
-        <h3><span>d</span> <span>e</span> <span>f</span></h3>
-        <h3><span>g</span> <span>h</span> <span>1</span></h3>
 
-        <h3><span id="transMatInv0"></span> <span id="transMatInv1"></span> <span id="transMatInv2"></span></h3>
-        <h3><span id="transMatInv3"></span> <span id="transMatInv4"></span> <span id="transMatInv5"></span></h3>
-        <h3><span id="transMatInv6"></span> <span id="transMatInv7"></span> <span id="transMatInv8">1</span></h3>
+        <div class="result">
+            <h3><span id="transMatInv0">a</span> <span id="transMatInv1">b</span> <span id="transMatInv2">c</span></h3>
+            <h3><span id="transMatInv3">d</span> <span id="transMatInv4">e</span> <span id="transMatInv5">f</span></h3>
+            <h3><span id="transMatInv6">g</span> <span id="transMatInv7">h</span> <span id="transMatInv8">1</span></h3>
+        </div>
     </div>
 
-    <div>
-        <h3>Point in Quadrilateral #1 to Transform (rounded to 10 decimal places):</h3>
+    <div class="input">
+        <h3>Point in Source to Transform to Dest:</h3>
         <p>
             ( <input type="text" id="pointX" size="1"> , <input type="text" id="pointY" size="1"> )
-            <span id="transResult"></span>
         </p>
-        <button onclick="applyTransform()">Transform!</button>
-    </div>
+        <div class="button" onclick="applyTransform()">Transform!</div>
 
-    <div>
-        <h3>Point in Quadrilateral #2 to Transform (rounded to 10 decimal places):</h3>
+        <h3>Point in Dest to Transform to Source:</h3>
         <p>
             ( <input type="text" id="pointXInv" size="1"> , <input type="text" id="pointYInv" size="1"> )
-            <span id="transResultInv"></span>
         </p>
-        <button onclick="applyTransformInv()">Transform!</button>
+        <div class="button" onclick="applyTransformInv()">Transform!</div>
+    </div>
+
+    <div class="output">
+    <h3>Point in Dest:</h3>
+        <div class="result">
+            <h3><span id="transResult">(x, y)</span></h3>
+        </div>
+    <h3>Point in Source:</h3>
+        <div class="result">
+            <h3><span id="transResultInv">(x, y)</span></h3>
+        </div>
+    </div>
+
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
