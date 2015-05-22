@@ -23,17 +23,20 @@ function setMatrixForCurrentRectangles(){
 	}
 }
 
+function roundToThousandths(num){
+	return Math.round(num*1000) / 1000;
+}
 
 function applyTransform(){
 	var x = $('#pointX').val();
 	var y = $('#pointY').val();
 	var res = perspectiveTran.transform(x,y);
-	$('#transResult').html('(' + res[0] + ', ' + res[1] + ')');
+	$('#transResult').html('(' + roundToThousandths(res[0]) + ', ' + roundToThousandths(res[1]) + ')');
 }
 
 function applyTransformInv(){
 	var x = $('#pointXInv').val();
 	var y = $('#pointYInv').val();
 	var res = perspectiveTran.transformInverse(x,y);
-	$('#transResultInv').html('(' + res[0] + ', ' + res[1] + ')');
+	$('#transResultInv').html('(' + roundToThousandths(res[0]) + ', ' + roundToThousandths(res[1]) + ')');
 }
