@@ -31,21 +31,30 @@
         }
         div.input, div.output {
             float: left;
-            width: 450px;
-            height: 400px;
-            padding: 0 25px;
+            border: 1px solid black;
+            width: 448px;
+            height: 398px;
+            padding: 25px;
+            margin-bottom: 12px;
+            background-color: #F3F1E2;
         }
         div.input p {
             text-align: center;
             font-size: 20px;
         }
+        div.short {
+            height: 198px;
+        }
         div.button {
             width: 200px;
-            margin: 0 auto;
+            margin: 48px auto 0 auto;
             text-align: center;
             padding: 8px;
             border: 1px solid #666666;
             cursor: pointer;
+        }
+        div.button:hover{
+            background-color: #ffffff;
         }
         h3 {
             font-weight: 500;
@@ -107,25 +116,28 @@
         </div>
     </div>
 
-    <div class="input">
+    <div class="input short">
         <h3>Point in Source to Transform to Dest:</h3>
         <p>
             ( <input type="text" id="pointX" size="1"> , <input type="text" id="pointY" size="1"> )
         </p>
         <div class="button" onclick="applyTransform()">Transform!</div>
+    </div>
+    <div class="output short">
+    <h3>Point in Dest:</h3>
+        <div class="result">
+            <h3><span id="transResult">(x, y)</span></h3>
+        </div>
+    </div>
 
+    <div class="input short">
         <h3>Point in Dest to Transform to Source:</h3>
         <p>
             ( <input type="text" id="pointXInv" size="1"> , <input type="text" id="pointYInv" size="1"> )
         </p>
         <div class="button" onclick="applyTransformInv()">Transform!</div>
     </div>
-
-    <div class="output">
-    <h3>Point in Dest:</h3>
-        <div class="result">
-            <h3><span id="transResult">(x, y)</span></h3>
-        </div>
+    <div class="output short">
     <h3>Point in Source:</h3>
         <div class="result">
             <h3><span id="transResultInv">(x, y)</span></h3>
