@@ -177,7 +177,6 @@
     		return ret;
 		};
 
-        this.numeric = numeric;
 		root.numeric = numeric;
 	}
 
