@@ -177,7 +177,7 @@
     		return ret;
 		};
 
-        this.numeric = numeric;
+		globalThis.numeric = numeric;
 		root.numeric = numeric;
 	}
 
@@ -195,11 +195,9 @@
 		global.PerspT = factory();
 	}
 }(this, function() {
-	'use strict';
-
-    function round(num){
-        return Math.round(num*10000000000)/10000000000;
-    }
+	function round(num){
+			return Math.round(num*10000000000)/10000000000;
+	}
 
 	function getNormalizationCoefficients(srcPts, dstPts, isInverse){
 		if(isInverse){
